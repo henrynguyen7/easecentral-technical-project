@@ -1,22 +1,26 @@
 {{extend 'default/layout_default.html'}}
 
 <div class="inner">
-	<img class="contactdb-schema" src={{=URL('static', 'img/easecentral_contactdb_schema.png')}}>
-    <h2 class="cover-heading">Contacts. Many addresses. Many phone numbers.</h2>
-
-    <h3>Queries</h3>
+    <img class="contactdb-schema" src={{=URL('static', 'img/easecentral_contactdb_schema.png')}}>
+    <br>
+    <br>
+    <a href="{{=URL('static', 'files/easecentral_contactdb_create.sql')}}">Create database script (MySQL)</a>
+    <br>
+    <br>
     <div class="panel-group" id="accordion">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                    	Display people and their phone numbers
+                        Display people and their phone numbers
                     </a>
                 </h4>
             </div>
             <div id="collapse1" class="panel-collapse collapse in">
                 <div class="panel-body">
-
+                    <p>SELECT p.*, pn.*</p>
+                    <p>FROM contact p</p>
+                    <p>LEFT JOIN phone_number pn ON pn.contact_id = p.id;</p>
                 </div>
             </div>
         </div>
@@ -30,7 +34,9 @@
             </div>
             <div id="collapse2" class="panel-collapse collapse">
                 <div class="panel-body">
-
+                    <p>SELECT p.*, a.*</p>
+                    <p>FROM contact p</p>
+                    <p>LEFT JOIN address a ON a.contact_id = p.id;</p>
                 </div>
             </div>
         </div>
@@ -38,13 +44,17 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                        Display people and their addresses
+                        Display people and their addresses only if they are in the state of California
                     </a>
                 </h4>
             </div>
             <div id="collapse3" class="panel-collapse collapse">
                 <div class="panel-body">
-
+                    <p>SELECT p.*, a.*</p>
+                    <p>FROM contact p</p>
+                    <p>LEFT JOIN address a ON a.contact_id = p.id</p>
+                    <p>JOIN state s ON s.id = a.state_id</p>
+                    <p>WHERE s.name = 'California';  -- Could substitute s.ID for performance</p>
                 </div>
             </div>
         </div>
@@ -52,13 +62,17 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-                        Display people and their addresses only if they are in the state of California
+                        Show how many people have addresses in each state
                     </a>
                 </h4>
             </div>
             <div id="collapse4" class="panel-collapse collapse">
                 <div class="panel-body">
-
+                    <p>SELECT s.name AS 'state', COUNT(p.id) AS 'num_people'</p>
+                    <p>FROM contact p</p>
+                    <p>LEFT JOIN address a ON a.contact_id = p.id</p>
+                    <p>JOIN state s ON s.id = a.state_id</p>
+                    <p>GROUP BY s.id;</p>
                 </div>
             </div>
         </div>
