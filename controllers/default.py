@@ -35,8 +35,6 @@ def anagrams():
         # Assemble anagrams by checking groups that have two or more words
         anagram_groups = [group for group in grouped_words if len(group) > 1]
 
-        print anagram_groups
-
         # Return anagrams so they can be rendered in the view
         return dict(
             is_solution=True,
