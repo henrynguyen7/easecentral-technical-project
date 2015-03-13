@@ -87,7 +87,13 @@
             </div>
             <div id="collapse5" class="panel-collapse collapse">
                 <div class="panel-body">
-
+                    <p>SELECT COUNT(*) * 100 / (SELECT COUNT(id) FROM contact) AS 'percentage_contacts_with_multiple_addresses'</p>
+                    <p>FROM</p>
+                    <p>(SELECT COUNT(DISTINCT(c.id))</p>
+                    <p>FROM contact c</p>
+                    <p>LEFT JOIN address a ON a.contact_id = c.id</p>
+                    <p>GROUP BY c.id</p>
+                    <p>HAVING COUNT(a.id) > 1) T1</p>
                 </div>
             </div>
         </div>
