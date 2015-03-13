@@ -19,9 +19,9 @@
             </div>
             <div id="collapse1" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <p>SELECT p.*, pn.*</p>
-                    <p>FROM contact p</p>
-                    <p>LEFT JOIN phone_number pn ON pn.contact_id = p.id;</p>
+                    <p>SELECT c.*, pn.*</p>
+                    <p>FROM contact c</p>
+                    <p>LEFT JOIN phone_number pn ON pn.contact_id = c.id;</p>
                 </div>
             </div>
         </div>
@@ -35,9 +35,9 @@
             </div>
             <div id="collapse2" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <p>SELECT p.*, a.*</p>
-                    <p>FROM contact p</p>
-                    <p>LEFT JOIN address a ON a.contact_id = p.id;</p>
+                    <p>SELECT c.*, a.*</p>
+                    <p>FROM contact c</p>
+                    <p>LEFT JOIN address a ON a.contact_id = c.id;</p>
                 </div>
             </div>
         </div>
@@ -51,9 +51,9 @@
             </div>
             <div id="collapse3" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <p>SELECT p.*, a.*</p>
-                    <p>FROM contact p</p>
-                    <p>LEFT JOIN address a ON a.contact_id = p.id</p>
+                    <p>SELECT c.*, a.*</p>
+                    <p>FROM contact c</p>
+                    <p>LEFT JOIN address a ON a.contact_id = c.id</p>
                     <p>JOIN state s ON s.id = a.state_id</p>
                     <p>WHERE s.name = 'California';  -- Could substitute s.ID for performance</p>
                 </div>
@@ -69,9 +69,9 @@
             </div>
             <div id="collapse4" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <p>SELECT s.name AS 'state', COUNT(p.id) AS 'num_people'</p>
-                    <p>FROM contact p</p>
-                    <p>LEFT JOIN address a ON a.contact_id = p.id</p>
+                    <p>SELECT s.name AS 'state', COUNT(c.id) AS 'num_contacts'</p>
+                    <p>FROM contact c</p>
+                    <p>LEFT JOIN address a ON a.contact_id = c.id</p>
                     <p>JOIN state s ON s.id = a.state_id</p>
                     <p>GROUP BY s.id;</p>
                 </div>
