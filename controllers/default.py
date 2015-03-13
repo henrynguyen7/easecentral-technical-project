@@ -14,8 +14,12 @@ def index():
 
 def anagrams():
 
-    # A file was uploaded
+    # The submit button was clicked
     if request.vars.uploadfile is not None:
+
+        # No file was selected... redirect back to upload form
+        if type(request.vars.uploadfile) is str:
+            return dict(is_solution=False)
 
         # Read the file
         inputfile = request.vars.uploadfile.file.read()
