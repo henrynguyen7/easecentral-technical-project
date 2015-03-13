@@ -1,3 +1,3 @@
 # EaseCentral Technical Project
 
-This is a technical project completed for EaseCentral.com containing two parts: an anagram project and a database project.
+This is a webapp built using Web2py completed for EaseCentral.com containing an anagram searcher and a contacts database project.
