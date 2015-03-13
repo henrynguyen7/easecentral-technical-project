@@ -17,4 +17,30 @@
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
 
+    {{if is_solution:}}
+    <div class="row solution">
+
+        <div class="col-md-6 solution-words">
+            <h4>Input words</h4>
+            {{for word in words:}}
+            <p>
+                {{=word}}
+            </p>
+            {{pass}}
+        </div>
+
+        <div class="col-md-6 solution-anagrams">
+            <h4>Anagrams</h4>
+            {{for group in anagram_groups:}}
+            <p>
+                {{for word in group:}}
+                    {{=word}}
+                {{pass}}
+            </p>
+            {{pass}}
+        </div>
+
+    </div>
+    {{pass}}
+
 </div>
